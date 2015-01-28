@@ -11,7 +11,7 @@
 % Df es el gradiente de f en cualquier punto
 % D2f es la hessiana de f en cualquier punto
 	%f = 2*y*z*sin(x) + 3*x*sin(z)*cos(y);
-    f = (1-x)^2 + 100*(y-x^2)^2 + (1-y)^2 + 100*(z-y^2)^2
+    f = (1-x)^2 + 100*(y-x^2)^2 + (1-y)^2 + 100*(z-y^2)^2;
 	Df = gradient(f);
 	D2f = hessian(f);
 
@@ -38,14 +38,13 @@ while (norm(Dfx) > tol)
    Dfxk = Dfx;
   D2fxk = D2fx;
      pk = -inv(D2fxk)*Dfxk;
-    alf = alfak;
-    % alfak = wolfe(xk,pk,f,dfxk,alf);
-  alfak = 1;
+  alfak = wolfeNT(xk,pk,f,Df,Dfxk);
+  %alfak = 1;
      u  = xk + alfak*pk;
      fk = double(subs(f,{x,y,z},u.'));
     Dfx = double(subs(Df,{x,y,z},u.'));
    D2fx = double(subs(D2f,{x,y,z},u.'));
-     k  = k+1;
    ITER = [ITER; k norm(Dfxk) fk u'];
+   k  = k+1;
    disp (ITER);
 end
