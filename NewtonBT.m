@@ -10,13 +10,15 @@
 % f es la funcion escalar
 % Df es el gradiente de f en cualquier punto
 % D2f es la hessiana de f en cualquier punto
-    % Funcion prueba 1
+    % Funciones de prueba:
 	%f = 2*y*z*sin(x) + 3*x*sin(z)*cos(y);
     % Rosembrock
     %f = (1-x)^2 + 100*(y-x^2)^2 + (1-y)^2 + 100*(z-y^2)^2;
     % PERM FUNCTION 0, D, BETA
-    b = 4.588;
-    f = ((1+b)*(x-1) + (2+b)*(y-(1/2)) + (3+b)*(z-(1/3)))^2 + ((1+b)*(x^2-1) + (2+b)*(y^2-(1/4)) + (3+b)*(z^2-(1/9)))^2 + ((1+b)*(x^3-1) + (2+b)*(y^3-(1/8)) + (3+b)*(z^3-(1/27)))^2;
+    %b = 4.588;
+    %f = ((1+b)*(x-1) + (2+b)*(y-(1/2)) + (3+b)*(z-(1/3)))^2 + ((1+b)*(x^2-1) + (2+b)*(y^2-(1/4)) + (3+b)*(z^2-(1/9)))^2 + ((1+b)*(x^3-1) + (2+b)*(y^3-(1/8)) + (3+b)*(z^3-(1/27)))^2;
+    % ZAKHAROV FUNCTION
+    f = x^2 + y^2 + z^2 + (0.5*i*x + 0.5*i*y + 0.5*i*z)^2  + (0.5*i*x + 0.5*i*y + 0.5*i*z)^4;
     % ===============
 	Df = gradient(f);
 	D2f = hessian(f);
