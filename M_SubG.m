@@ -11,25 +11,30 @@
     g = subgrad(x,A,b,d);
     a = rand(1)/pi;
     ub = x;
+    imax = 100;
+    jmax = 10;
     
 % Metodo
 % ===================================
 disp ('     i        fb   ')
-for k=1:1000
-   ITER = [];  
-  alfak = a/sqrt(k);
-     xk = x-alfak*g;
-     fk = feval(f,x);
-     if fk <=fb
-         fb = fk;
-         ub = xk;
-          i = k;
-     end
-      x = xk;
-      g = subgrad(x,A,b,d);
-   %ITER = [ITER; k i fb x'];
-   %disp (ITER);
+for i=1:imax
+    
+    for j=1:1000
+        ITER = [];  
+        alfak = a/sqrt(j);
+        xk = x-alfak*g;
+        fk = feval(f,x);
+        if fk <=fb
+            fb = fk;
+            ub = xk;
+             k = j;
+        end
+        x = xk;
+        g = subgrad(x,A,b,d);
+    end
+    x = ub;
+    g = subgrad(x,A,b,d);
+    disp([k,fb]);
+    disp('xb =')
+    disp(ub);
 end
-disp([i,fb]);
-disp('xb =')
-disp(ub);
