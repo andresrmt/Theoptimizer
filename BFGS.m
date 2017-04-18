@@ -1,7 +1,7 @@
 %%%%%  Metodo Cuasi-Newton BFGs   %%%%%
 
 %  Definiciones de f y f'
-%  =======================
+%  ========================
     x  = [1;1];
     B   = eye(length(x));
     tol = 10*sqrt(eps);
